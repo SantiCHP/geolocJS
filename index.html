@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Promesa</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class>
+    <header class="text-center">
+        <h1>
+            UF 1843 - JS Práctica 09
+        </h1>
+        <h2><small class="text-muted">Bienvenido a la mejor app de Geolocalización del </small><i class="fas fa-globe-europe"></i></h2>
+    </header>
+    <article class="d-flex flex-column justify-content-center align-items-center">
+        <div class="card border-light mb-3" style="max-width: 40rem;">
+            <div class="card-header">Elija una localización</div>
+            <div class="card-body">
+              <form action="">
+                <div class="form-group">
+                    <label for="exampleSelect1" class="form-label mt-2">Localizaciones</label>
+                    <select class="form-select" id="exampleSelect1">
+                        <option value=""> - </option>
+                      <option value="Gran Canaria. Las Palmas de Gran Canaria" form="form-group">Gran Canaria. Las Palmas de Gran Canaria</option>
+                      <option value="Tenerife. Santa Cruz de Tenerife" form="form-group">Tenerife. Santa Cruz de Tenerife</option>
+                      <option value="Fuerteventura. Puerto del Rosario" form="form-group">Fuerteventura. Puerto del Rosario</option>
+                      <option value="Praia, Cape Verde" form="form-group">Praia, Cape Verde</option>
+                      <option value="Dakar, Senegal" form="form-group">Dakar, Senegal</option>
+                    </select>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-lg btn-primary mt-2" type="submit">Localizar</button>
+                  </div>
+              </form>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <h3 class="card-header">Visualización en el mapa</h3>
+            <div class="card-body">
+                <div id="map"></div>
+            </div>  
+        </div>
+    </article>
+<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMITM2XQReQZ7NZJTiBJMYOqY2eq8-cgg&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+</body>
+</html>
