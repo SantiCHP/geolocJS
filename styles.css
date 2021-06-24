@@ -1,5 +1,5 @@
 #footer{
-  position: absolute;
+  position: fixed;
   bottom: 0vh;
   left: 0%;
   line-height: 3rem;
