@@ -1,55 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript - Promesa</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="./bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
-<body class>
-    <header class="text-center">
-        <h1>
+
+<body>
+    <header>
+        <h1 class="mt-4 text-center">
             UF 1843 - JS Práctica 09
         </h1>
-        <h2><small class="text-muted">Bienvenido a la mejor app de Geolocalización del </small><i class="fas fa-globe-europe"></i></h2>
+        <p class="text-center mb-4 display-6 text-muted">Bienvenido a la mejor app de Geolocalización del <i
+                class="fas fa-globe-europe text-info"></i></p>
     </header>
-    <article class="d-flex flex-column justify-content-center align-items-center">
-        <div class="card border-light mb-3" style="max-width: 40rem;">
-            <div class="card-header">Elija una localización</div>
-            <div class="card-body">
-              <form action="">
-                <div class="form-group">
-                    <label for="exampleSelect1" class="form-label mt-2">Localizaciones</label>
-                    <select class="form-select" id="exampleSelect1">
-                        <option value=""> - </option>
-                      <option value="Gran Canaria. Las Palmas de Gran Canaria" form="form-group">Gran Canaria. Las Palmas de Gran Canaria</option>
-                      <option value="Tenerife. Santa Cruz de Tenerife" form="form-group">Tenerife. Santa Cruz de Tenerife</option>
-                      <option value="Fuerteventura. Puerto del Rosario" form="form-group">Fuerteventura. Puerto del Rosario</option>
-                      <option value="Praia, Cape Verde" form="form-group">Praia, Cape Verde</option>
-                      <option value="Dakar, Senegal" form="form-group">Dakar, Senegal</option>
+    <article class="d-flex flex-column align-items-center">
+        <div class="card p-4">
+            <form id="form-loc">
+                <div class="input-group">
+                    <select class="form-select text-success" id="localizacion" name="localizacion" function="cargaLocations"
+                        aria-label="Example select with button addon">
+                        <option selected>Elija una localización</option>
                     </select>
+                    <button class="btn btn-outline-secondary" id="localizar" type="submit">Localizar</button>
                 </div>
-                <div class="d-grid gap-2">
-                    <button class="btn btn-lg btn-primary mt-2" type="submit">Localizar</button>
-                  </div>
-              </form>
+            </form>
+        </div>
+
+        <div class="d-flex pt-3 justify-content-arround">
+            <div class="card border-info me-2 mb-3" id="visualizaLoc" style="max-width: 30rem;">
+                <div class="card-header">
+                    <h3 class="text-center">Localización seleccionada</h3>
+                </div>
+                <div class="card-body ">
+                    <h6 class="card-title">En este área se mostrarán los datos de la localización seleccionada. Podrá borrarla o modificarla.
+                    </h6>
+                    <form class="d-flex flex-column" id="form-show">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="s-localizacion" id="s-localizacion"
+                                placeholder="Localización">
+                            <label for="s-localizacion">Localización</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="s-latitud" id="s-latitud" placeholder="Latitud">
+                            <label for="s-latitud">Latitud</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="s-longitud" id="s-longitud"
+                                placeholder="Longitud">
+                            <label for="s-latitud">Longitud</label>
+                        </div>
+                    </form>
+                    <div class="d-flex justify-content-evenly ">
+                        <button class="btn btn-primary flex-grow-1 me-2" type="submit" form="form-show">Borrar</button>
+                        <button class="btn btn-warning flex-grow-1 ms-2" id="actualizar">Modificar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-success ms-2 mb-3" style="max-width: 30rem;">
+                <div class="card-header">
+                    <h3 class="text-center">Agregar localización</h3>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Puede añadir una nueva localización desde aquí. Ingrese los siguientes datos:
+                    </h6>
+                    <form id="form-add-loc">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="nameAdd" id="nameAdd" placeholder="Localización">
+                            <label for="nameAdd">Localización</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="latAdd" id="latAdd" placeholder="Latitud">
+                            <label for="latAdd">Latitud</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="lngAdd" id="lngAdd" placeholder="Longitud">
+                            <label for="lngAdd">Longitud</label>
+                        </div>
+                        <button class="btn btn-success w-100" type="submit" form="form-add-loc">Añadir</button>
+    
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="card mb-3">
-            <h3 class="card-header">Visualización en el mapa</h3>
-            <div class="card-body">
-                <div id="map"></div>
-            </div>  
-        </div>
+
+        
     </article>
-<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMITM2XQReQZ7NZJTiBJMYOqY2eq8-cgg&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
+    <footer class="d-block bg-dark w-100 text-center" id="footer">
+        <span class="align-middle">Esta página está hecha por Santiago Castellano &copy; con mucho <i class="fas fa-heart fa-beat text-danger"></i></span>
+    </footer>
+    <script src="./app.js"></script>
 </body>
+
 </html>
